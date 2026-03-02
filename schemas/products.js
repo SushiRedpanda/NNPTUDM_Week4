@@ -13,24 +13,28 @@ let Schema = mongoose.Schema({
         required: true
     },
     category: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category',
         required: true
     },
     images: {
-        type: Array[String],
+        type: [String],
         required: true
     },
     creationAt: {
         type: Date,
-        required: true
+        required: true,
+        default: Date.now
     },
     updatedAt: {
         type: Date,
-        required: true
+        required: true,
+        default: Date.now
     },
     isDeleted: {
         type: Boolean,
-        required: true
+        required: true,
+        default: false
     }
 });
 

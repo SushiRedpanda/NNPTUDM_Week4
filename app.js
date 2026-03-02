@@ -29,9 +29,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// API endpoints under versioned prefix
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/roles', rolesRouter);
+app.use('/api/V1/users', usersRouter);
+app.use('/api/V1/roles', rolesRouter);
+// new product and category endpoints
+var productsRouter = require('./routes/products');
+var categoriesRouter = require('./routes/categories');
+app.use('/api/V1/products', productsRouter);
+app.use('/api/V1/categories', categoriesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
